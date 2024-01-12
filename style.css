@@ -1,0 +1,30 @@
+body {
+
+    font-family:  sans-serif;
+}
+
+.sidebar {
+    position: fixed;
+    height: 100vh;
+    width: 200px;
+    background-color: rgb(77, 77, 139);
+    color: #fff;
+    padding: 20px;
+}
+.menu-item {
+
+    cursor: pointer;
+
+} 
+.menu-item:hover {
+    background-color: rgb(86, 86, 117);
+}
+.menu-item span {
+    vertical-align: middle;
+}
+.home-section {
+    margin-left: 200px; 
+    padding: 20px;
+}
+
+

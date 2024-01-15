@@ -7,12 +7,15 @@
     <link rel="stylesheet" href="style.css"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-     </head><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
   <body>
     <div class="sidebar">
     <h1>Gestion De Stock</h1>
-    <div class="menu-item"><i class="bi bi-grid"></i><span>Dashboard</span></div><br>
-    <div class="menu-item"><i class="bi bi-box-seam"></i><span>Produit</span></div><br>
+   <div class="menu-item"><i class="bi bi-grid"></i><span>Dashboard</span></div><br>
+   <div class="menu-item">
+  <i class="bi bi-box-seam"></i><a href="ajoutproduit.php"><span>Produit</span></a>
+</div><br>
     <div class="menu-item"><i class="bi bi-list-task"></i><span>Commandes</span></div><br>
     <div class="menu-item"><i class="bi bi-bar-chart"></i><span>Analyse</span></div><br>
     <div class="menu-item"><i class="bi bi-database"></i><span>Stock</span></div><br>
@@ -41,15 +44,10 @@
   <ul class="dropdown-menu">
     <li><a class="dropdown-item" href="#">Action</a></li>
     <li><a class="dropdown-item" href="#">Another action</a></li>
-  
   </ul>
-
 </div>
-
-    </div>
-   
-      </nav>
-    
+   </div>
+        </nav>
       </section>
       <section class="main-content">
     <div class="card text-bg-primary mb-3" style="max-width: 18rem;">
@@ -57,20 +55,17 @@
         <p>523</p>
         <i class="bi bi-cart"></i>
     </div>
-
     <div class="card text-bg-secondary mb-3" style="max-width: 18rem;">
         <div class="card-header">Vente</div>
         <h5 class="card-title"></h5>
     </div>
-
-    <div class="card text-bg-success mb-3" style="max-width: 18rem;">
+   <div class="card text-bg-success mb-3" style="max-width: 18rem;">
         <div class="card-header">Profit</div>
         <div class="card-body">
             <h5 class="card-title"></h5>
             <p class="card-text"></p>
         </div>
     </div>
-
     <div class="card text-bg-danger mb-3" style="max-width: 18rem;">
         <div class="card-header">Revenu</div>
         <div class="card-body">
@@ -79,10 +74,6 @@
         </div>
     </div>
 </section>
-
-
-
 </div>
-
 </body>
 </html>

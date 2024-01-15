@@ -5,18 +5,18 @@ if (isset($_POST) && $_POST){
     echo"</pre>";
 
 }
-if (isset($_files) && $_files) {
+if (isset($_FILES) && $_FILES) {
     echo "<pre>";
-    print_r($_file);
-    echo"<pre>";
+    print_r($_FILES);
+    echo"</pre>";
 }
 ?>
 <html>
 <head>
 </head>
 <body>
-<h2>Ajouter un Produit</h2>
-<form action="" method="" enctype="multipart/form-data">
+<h2>Ajouter un Produit </h2>
+<form action="produit.php" method="post" enctype="multipart/form-data">
         <div>
     <label for="nom">Nom du Produit:</label>
     <input type="text" name="nom" required><br>

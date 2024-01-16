@@ -1,5 +1,5 @@
 <?php
-
+//  vérifier et valider l'ID avant de l'utiliser dans la requête SQL
 if (isset($_GET['id'])) {
     $produit_id = $_GET['id'];
 
@@ -12,7 +12,7 @@ if (isset($_GET['id'])) {
         $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-
+        // Vérifie si le formulaire de confirmation a été soumis
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmer'])) {
             $sql_suppression = "DELETE FROM produit WHERE id = :id";
             $stmt = $pdo->prepare($sql_suppression);
@@ -20,13 +20,13 @@ if (isset($_GET['id'])) {
 
             if ($stmt->execute()) {
                 echo "Produit supprimé avec succès.";
-
+                //  redirection ou un lien vers la liste des produits
                 echo '<br><a href="listeproduit.php">Retour à la liste des produits</a>';
             } else {
                 echo "Erreur lors de la suppression du produit.";
             }
         } else {
-
+            // Récupérez les informations du produit pour les afficher dans le message de confirmation
             $sql_selection = "SELECT * FROM produit WHERE id = :id";
             $stmt_selection = $pdo->prepare($sql_selection);
             $stmt_selection->bindParam(':id', $produit_id);
@@ -34,7 +34,7 @@ if (isset($_GET['id'])) {
             $produit = $stmt_selection->fetch(PDO::FETCH_ASSOC);
 
             if ($produit) {
-      
+                // Affichez le message de confirmation et le formulaire de suppression
                 ?>
                 <!DOCTYPE html>
                 <html lang="en">
@@ -60,11 +60,11 @@ if (isset($_GET['id'])) {
     } catch (PDOException $e) {
         echo "Erreur de connexion à la base de données : " . $e->getMessage();
     } finally {
-
+        //  fermer la connexion à la base de données
         $pdo = null;
     }
 } else {
-
+    // Gestion de l'absence d'ID
     echo "ID du produit non spécifié.";
 }
 ?>

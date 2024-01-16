@@ -11,16 +11,15 @@ body {
     padding: 20px;
 }
 .menu-item {
-
     cursor: pointer;
-
+    margin-bottom: 10px;
 } 
 .menu-item:hover {
     background-color: rgb(86, 86, 117);
 }
 .menu-item span {
     vertical-align: middle;
-    margin-left: 5px; 
+    margin-left: 5px; /* Ajustez la valeur selon vos préférences */
 }
 .home-section {
     margin-left: 200px; 
@@ -30,23 +29,30 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #f8f9fa; 
+    background-color: #f8f9fa; /* Couleur de fond de la barre de navigation */
     padding: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre légère pour la barre de navigation */
 }
+
 .sidebar-button {
     cursor: pointer;
     display: flex;
     align-items: center;
 }
+
 .main-content {
-    margin-left: 220px; 
+    margin-left: 220px; /* Ajustez la marge en fonction de la largeur de votre barre latérale */
     padding: 20px;
+}
+
+.kpi {
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between; /* Cela écarte les éléments enfants de manière égale */
 }
 
 .card {
-    width: calc(25% - 20px); 
+    width: calc(25% - 20px); /* Ajustez la largeur en fonction du nombre de cartes et de l'espacement */
     margin-bottom: 20px;
 }
+
+/* Ajoutez d'autres styles selon vos besoins */

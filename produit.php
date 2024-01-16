@@ -4,22 +4,23 @@ if (isset($_POST) && $_POST){
     print_r($_POST);
     echo"</pre>";
 
-
+    // Assurez-vous de vérifier et valider les données avant de les utiliser dans la requête SQL
     $nom = $_POST['nom'];
     $description = $_POST['description'];
     $prix = $_POST['prix'];
     $stock = $_POST['stock'];
 
+    // stockerez les images
     $imageFolder = './images/';
 
-
+    // Vérifiez si un fichier a été téléchargé
     if (isset($_FILES['file']) && $_FILES['file']['error'] == 0) {
         $imagePath = $imageFolder . basename($_FILES['file']['name']);
 
-
+        // Déplacez le fichier téléchargé vers le dossier des images
         move_uploaded_file($_FILES['file']['tmp_name'], $imagePath);
 
-        
+
         $servername = "localhost";
         $username = "root";
         $password = "";

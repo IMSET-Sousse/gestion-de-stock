@@ -1,23 +1,23 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id']) && !empty($_POST['id'])) {
-
+    // Assurez-vous de vérifier et valider les données avant de les utiliser dans la requête SQL
     $id = $_POST['id'];
     $nom = $_POST['nom'];
     $description = $_POST['description'];
     $prix = $_POST['prix'];
     $stock = $_POST['stock'];
 
-   
+    // Emplacement où vous stockerez les images
     $imageFolder = './images/';
 
-    
+    // Vérifiez si un fichier a été téléchargé
     if (isset($_FILES['file']) && $_FILES['file']['error'] == 0) {
         $imagePath = $imageFolder . basename($_FILES['file']['name']);
 
-     
+        // Déplacez le fichier téléchargé vers le dossier des images
         move_uploaded_file($_FILES['file']['tmp_name'], $imagePath);
 
-      
+        // Mettez à jour le chemin de l'image dans la base de données
         $servername = "localhost";
         $username = "root";
         $password = "";
@@ -63,6 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id']) && !empty($_POST
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $id = $_GET['id'];
 
+    // Récupérez les informations du produit à partir de la base de données
     $servername = "localhost";
     $username = "root";
     $password = "";
@@ -79,7 +80,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($result) {
-   
+            // Affichez le formulaire avec les données du produit
             ?>
             <form action="" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?php echo $result['id']; ?>">

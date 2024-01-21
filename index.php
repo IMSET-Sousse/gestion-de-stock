@@ -30,10 +30,7 @@
           <i class="bx bx-menu sidebarBtn"></i>
           <span class="dashboard">Dashboard</span>
         </div>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+       
         <div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             Sana
@@ -76,7 +73,7 @@
       <table id="myTable" class="table">
     <thead>
         <div class="mb-3">
-            <a href="produit.php" class="btn btn-success">Ajouter un produit</a>
+            <a href="ajoutproduit.php" class="btn btn-success">Ajouter un produit</a>
         </div>
         <tr>
             <th>Product ID</th>

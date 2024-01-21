@@ -21,13 +21,13 @@ if (mysqli_num_rows($result) > 0) {
     echo "<table border='1'>";
     echo "<tr><th>ID</th><th>Titre</th><th>Créé le</th><th>Modifié le</th><th>Actions</th></tr>";
 
-    while($row = mysqli_fetch_assoc($result)) {
+    while ($row = mysqli_fetch_assoc($result)) {
         echo "<tr>";
         echo "<td>" . $row["id"] . "</td>";
         echo "<td>" . $row["titre"] . "</td>";
-        echo "<td>" . $row["created_at"] . "</td>";
-        echo "<td>" . $row["update_at"] . "</td>";
-        echo "<td><a href='categorie_edit.php?id=" . $row["id"] . "'>Modifier</a> | <a href='categorie_delete.php?id=" . $row["id"] . "'>Supprimer</a></td>";
+        echo "<td>" . date("Y-m-d H:i:s", strtotime($row["created_at"])) . "</td>";
+        echo "<td>" . date("Y-m-d H:i:s", strtotime($row["updated_at"])) . "</td>";
+        echo "<td><a href='categorie_edit.php?id=" . $row["id"] . "'>Modifier</a> | <a href='categorie_delete.php?id=" . $row["id"] . "' onclick='return confirm(\"Êtes-vous sûr de vouloir supprimer cette catégorie ?\");'>Supprimer</a></td>";
         echo "</tr>";
     }
 

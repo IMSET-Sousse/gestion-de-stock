@@ -1,54 +1,62 @@
 <?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "gestion-de-stock";
+
 // Assurez-vous que l'ID du produit à supprimer est passé en paramètre dans l'URL
+
+// Vérifier si l'ID du produit est présent dans l'URL
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $id = $_GET['id'];
 
-    // Paramètres de connexion à la base de données
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "gestion-de-stock";
+    // Vérifier si le formulaire de confirmation est soumis
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['confirm']) && $_POST['confirm'] == 'yes') {
+        // Si le formulaire est soumis avec la confirmation, supprimer le produit
+        // Utilisez des requêtes préparées pour des raisons de sécurité
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "gestion-de-stock";
 
-    try {
-        // Créez une connexion à la base de données
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        try {
+            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        if (isset($_GET['confirm']) && $_GET['confirm'] == 'true') {
-            // Supprimez le produit de la base de données
             $sql = "DELETE FROM produit WHERE id=:id";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':id', $id);
             $stmt->execute();
 
             echo "Le produit a été supprimé avec succès.";
-            header('Location: afficher_produits.php');
-            exit;
+        } catch (PDOException $e) {
+            echo "Erreur : " . $e->getMessage();
         }
 
-        // Récupérez les informations du produit avant la suppression
-        $sql = "SELECT * FROM produit WHERE id=:id";
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':id', $id);
-        $stmt->execute();
-        $product = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($product) {
-            // Affichez le message de confirmation avec les informations du produit
-            echo "Êtes-vous sûr de vouloir supprimer le produit suivant ?<br>";
-            echo "Nom du Produit : " . ($product['nom'] ?? '') . "<br>";
-            echo "Description : " . ($product['description'] ?? '') . "<br>";
-            echo "Prix : " . ($product['prix'] ?? '') . "<br>";
-            echo '<a href="supprimer_produit.php?id=' . $id . '&confirm=true">Oui, Supprimer</a> | <a href="afficher_produits.php">Annuler</a>';
-        } else {
-            echo "Aucun produit trouvé avec cet identifiant.";
-        }
-    } catch (PDOException $e) {
-        echo "Erreur : " . $e->getMessage();
+        // Fermez la connexion à la base de données
+        $conn = null;
+    } else {
+        // Afficher le formulaire de confirmation
+        ?>
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Confirmation de Suppression</title>
+        </head>
+        <body>
+            <h3>Confirmation de Suppression</h3>
+            <form method="post">
+                Êtes-vous sûr de vouloir supprimer ce produit ?
+                <input type="hidden" name="confirm" value="yes">
+                <button type="submit">Oui, Supprimer</button>
+                <a href="afficher_produits.php">Annuler</a>
+            </form>
+        </body>
+        </html>
+        <?php
     }
-
-    // Fermez la connexion à la base de données
-    $conn = null;
 } else {
     echo "L'identifiant du produit à supprimer n'est pas spécifié.";
 }

@@ -73,33 +73,58 @@
             </div>
         </div>
       </div>
-      <table id="myTable">
-          <thead>
-              <tr>
-                  <th>Nom de produit</th>
-                  <th>Description</th>
-                  <th>Prix</th>
-                  <th>Stock</th>
-                  <th>Images</th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr>
-                  <td>Pantalon</td>
-                  <td>Pantalon tissé. Modèle ajusté avec taille haute et braguette </td>     
-                  <td>90,000</td>
-                  <td>10</td>
-                  <td>Row 1 Data 2</td>
-              </tr>
-              <tr>
-                  <td>Row 2 Data 2</td>
-                  <td>Row 2 Data 2</td>
-                  <td>Row 2 Data 1</td>
-                  <td>Row 2 Data 2</td>
-                  <td>Row 2 Data 2</td>
-              </tr>
-          </tbody>
-      </table>
+      <table id="myTable" class="table">
+    <thead>
+        <div class="mb-3">
+            <a href="produit.php" class="btn btn-success">Ajouter un produit</a>
+        </div>
+        <tr>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Categorie</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        // Connect to the database
+        $conn = mysqli_connect("localhost", "root", "", "gestion-de-stock");
+        if (!$conn) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+
+        // Query the produits table with a JOIN on categorie table
+        $sql = "SELECT produit.id, produit.titre, produit.prix, categorie.titre AS Categorie
+                FROM produit
+                INNER JOIN categorie ON produit.categorie_id = categorie.id";
+        $result = mysqli_query($conn, $sql);
+
+        // Display each row of the table
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr>";
+                echo "<td>" . $row["id"] . "</td>";
+                echo "<td>" . $row["titre"] . "</td>";
+                echo "<td>" . $row["prix"] . "</td>";
+                echo "<td>" . $row["Categorie"] . "</td>"; // Afficher la catégorie
+                echo "<td>
+                    <a href='modifieproduit.php?id=" . $row["id"] . "' class='btn btn-warning'>Modifier</a>
+                    <a href='supprimer_produit.php?id=" . $row["id"] . "' class='btn btn-danger'>Supprimer</a>
+                </td>"; // Boutons pour chaque ligne
+                echo "</tr>";
+            }
+        } else {
+            echo "<tr><td colspan='5'>0 results</td></tr>";
+        }
+
+        // Close the database connection
+        mysqli_close($conn);
+        ?>
+    </tbody>
+</table>
+
+
     </section>
 </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>

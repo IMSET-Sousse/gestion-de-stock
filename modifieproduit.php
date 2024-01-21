@@ -2,10 +2,10 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id']) && !empty($_POST['id'])) {
     // Assurez-vous de vérifier et valider les données avant de les utiliser dans la requête SQL
     $id = $_POST['id'];
-    $nom = $_POST['nom'];
+    $titre = $_POST['titre'];
     $description = $_POST['description'];
     $prix = $_POST['prix'];
-    $stock = $_POST['stock'];
+  
 
     // Emplacement où vous stockerez les images
     $imageFolder = './images/';
@@ -27,13 +27,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id']) && !empty($_POST
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $sql = "UPDATE produit SET nom=:nom, description=:description, prix=:prix, stock=:stock, image_path=:imagePath WHERE id=:id";
+            $sql = "UPDATE produit SET titre=:titre, description=:description, prix=:prix,  image_path=:imagePath WHERE id=:id";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':id', $id);
-            $stmt->bindParam(':nom', $nom);
+            $stmt->bindParam(':titre', $titre);
             $stmt->bindParam(':description', $description);
             $stmt->bindParam(':prix', $prix);
-            $stmt->bindParam(':stock', $stock);
             $stmt->bindParam(':imagePath', $imagePath);
             $stmt->execute();
 
@@ -48,6 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id']) && !empty($_POST
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -85,8 +85,8 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
             <form action="" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?php echo $result['id']; ?>">
 
-                <label for="nom">Nom du Produit:</label>
-                <input type="text" name="nom" value="<?php echo $result['nom']; ?>" required><br>
+                <label for="titre">Nom du Produit:</label>
+                <input type="text" name="titre" value="<?php echo $result['titre']; ?>" required><br>
 
                 <label for="description">Description:</label>
                 <textarea name="description" required><?php echo $result['description']; ?></textarea><br>
@@ -94,13 +94,14 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                 <label for="prix">Prix:</label>
                 <input type="number" name="prix" step="0.01" value="<?php echo $result['prix']; ?>" required><br>
 
-                <label for="stock">Stock:</label>
-                <input type="number" name="stock" value="<?php echo $result['stock']; ?>" required><br>
+               
+                <label>Image actuelle:</label>
+                <img src="<?php echo $result['image_path']; ?>" alt="Image actuelle" style="max-width: 200px;"><br>
 
-                <label>File</label>
-                <input type="file" name="file">
+                <label for="file">Nouvelle Image:</label>
+                <input type="file" name="file" accept="image/*"><br>
 
-                <button type="submit">Modifier</button>
+                <input type="submit" value="Modifier Produit">
             </form>
             <?php
         } else {

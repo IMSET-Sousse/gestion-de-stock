@@ -1,15 +1,16 @@
 
+
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "gestion-de-stock";
+$serveur = "localhost";
+$utilisateur = "root";
+$mot_de_passe = "";
+$base_de_donnees = "gestion-de-stock";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
+// Créer la connexion
+$connexion = new mysqli($serveur, $utilisateur, $mot_de_passe, $base_de_donnees);
+
+// Vérifier la connexion
+if ($connexion->connect_error) {
+    die("La connexion à la base de données a échoué : " . $connexion->connect_error);
 }
-
 ?>

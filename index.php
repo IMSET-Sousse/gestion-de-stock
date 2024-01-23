@@ -12,9 +12,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
-    <div class="sidebar">
-      <h1>Gestion De Stock</h1>
-      <div class="menu-item"><i class="bi bi-grid"></i><span>Dashboard</span></div>
+  <div class="sidebar">
+  <div class="logo-details">
+    <i class="bx bxl-c-plus-plus"></i>
+    <h1><span class="logo_name">Gestion DE Stock</span></h1>
+  </div>
+
+
       <div class="menu-item"><i class="bi bi-box-seam"></i><a href="ajoutproduit.php"><span>Produit</span></a></div>
       <div class="menu-item"><i class="bi bi-list-task"></i><span>Commandes</span></div>
       <div class="menu-item"><i class="bi bi-bar-chart"></i><span>Analyse</span></div>
@@ -29,7 +33,7 @@
       <nav>
         <div class="sidebar-button">
           <i class="bx bx-menu sidebarBtn"></i>
-          <span class="dashboard">Dashboard</span>
+          <span class="dashboard">Dashboard Admin</span>
         </div>
        
         <div class="dropdown">

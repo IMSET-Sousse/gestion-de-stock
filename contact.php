@@ -1,70 +1,44 @@
-<?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "gestion-de-stock";
-
-// Créer une connexion
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-
-// Vérifier la connexion
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-session_start(); 
-include("config.php");
-
-// Vérifier si l'utilisateur est connecté
-if (!isset($_SESSION['user_id'])) {
-    header("Location: connexionutilisateur.php");
-    exit();
-}
-
-// Traitement du formulaire de contact
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $user_id = $_SESSION['user_id'];
-    $message = $_POST['message'];
-
-    // Enregistrez le message dans la table Contact
-    $sql = "INSERT INTO Contact (user_id, message) VALUES ('$user_id', '$message')";
-    if (mysqli_query($conn, $sql)) {
-        echo "<p>Message envoyé avec succès!</p>";
-    } else {
-        echo "Erreur: " . $sql . "<br>" . mysqli_error($conn);
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Contact - E-shop</title>
-    <!-- Liens vers les fichiers CSS et JavaScript -->
+    <title>Contactez-nous</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 <body>
 
-<nav>
-    <ul>
-        <li><a href="index.php">Accueil</a></li>
-        <li><a href="produits.php">Produits</a></li>
-        <li><a href="contact.php">Contact</a></li>
-        <li><a href="logout.php">Déconnexion</a></li>
-    </ul>
-</nav>
+    <?php include("nav.php") ?>
 
-<div>
-    <h2>Contactez-nous</h2>
-    
-    <!-- Formulaire de contact -->
-    <form method="post" action="contact.php">
-        <label for="message">Message:</label>
-        <textarea name="message" id="message" rows="4" required></textarea>
-        <br>
-        <button type="submit">Envoyer</button>
-    </form>
-</div>
+    <div class="container">
+        <h2 class="mt-5 mb-4">Contactez-nous</h2>
 
+        <form method="post" action="contact.php">
+            <div class="mb-3">
+                <label for="nom" class="form-label">Nom:</label>
+                <input type="text" class="form-control" name="nom" id="nom" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" class="form-control" name="email" id="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="sujet" class="form-label">Sujet:</label>
+                <input type="text" class="form-control" name="sujet" id="sujet">
+            </div>
+            <div class="mb-3">
+                <label for="message" class="form-label">Message:</label>
+                <textarea class="form-control" name="message" id="message" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Envoyer</button>
+        </form>
+    </div>
+
+
+    <?php include("footer.php") ?>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -25,7 +25,7 @@
       <div class="menu-item"><i class="bi bi-bar-chart"></i><span>Analyse</span></div>
       <div class="menu-item"><i class="bi bi-database"></i><span>Stock</span></div>
       <div class="menu-item"><i class="bi bi-files"></i><span>Toutes les commandes</span></div>
-      <div class="menu-item"><i class="bi bi-people-fill"></i><span>Clients</span></div>
+      <div class="menu-item"><i class="bi bi-people-fill"><a href="utilisateur.php"></i><span>Clients</span></div>
       <div class="menu-item">
     <a href="#" class="bi bi-person" onclick="toggleDropdown()">Admin</a>
     <div id="dropdownMenu" class="dropdown-menu" style="display: none;">

@@ -35,6 +35,42 @@ $connexion->close();
     <title>Profil de l'Administrateur</title>
 </head>
 <body>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 20px;
+}
+
+h2 {
+    color: #007bff;
+}
+
+.error-message {
+    color: red;
+}
+
+.profile-info {
+    margin-bottom: 20px;
+}
+
+.profile-info p {
+    margin: 5px 0;
+}
+
+.profile-info p:first-child {
+    font-weight: bold;
+}
+
+.profile-info p:nth-child(even) {
+    color: #6c757d;
+}
+
+.profile-info p:nth-child(odd) {
+    color: #343a40;
+}
+</style>
      <h2>Profil de l'Administrateur</h2>
 
     <?php if (!empty($erreur_profil)) : ?>

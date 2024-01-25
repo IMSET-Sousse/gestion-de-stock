@@ -26,9 +26,27 @@
       <div class="menu-item"><i class="bi bi-database"></i><span>Stock</span></div>
       <div class="menu-item"><i class="bi bi-files"></i><span>Toutes les commandes</span></div>
       <div class="menu-item"><i class="bi bi-people-fill"></i><span>Clients</span></div>
-      <div class="menu-item"><i class="bi bi-person"><a href="utlisateur.php"></i><span>Utilisateur</span></a></div>
+      <div class="menu-item">
+    <a href="#" class="bi bi-person" onclick="toggleDropdown()">Admin</a>
+    <div id="dropdownMenu" class="dropdown-menu" style="display: none;">
+        <a class="dropdown-item" href="ajout_admin.php">Ajouter admin</a>
+        <a class="dropdown-item" href="admin_liste.php">Liste des admins</a>
+    </div>
+</div>
+
+<script>
+    function toggleDropdown() {
+        var dropdownMenu = document.getElementById("dropdownMenu");
+        if (dropdownMenu.style.display === "none") {
+            dropdownMenu.style.display = "block";
+        } else {
+            dropdownMenu.style.display = "none";
+        }
+    }
+</script>
+
       <div class="menu-item"><i class="bi bi-gear"></i><span>Parametre</span></div>
-      <div class="menu-item"><i class="bi bi-box-arrow-in-left"></i><span>Déconnexion</span></div>
+      <div class="menu-item"><i class="bi bi-box-arrow-in-left"><a href="deconnexion.php"></i><span>Déconnexion</span></a></div>
     </div>
     <section class="home-section">
       <nav>
@@ -49,33 +67,37 @@
       </nav>
     </section>
     <section class="main-content">
-      <div class="kpi">
+    <div class="kpi">
         <div class="card text-bg-primary mb-3" style="max-width: 18rem;">
-          <div class="card-header">Commandes</div>
-          <div class="card-body">
-            <p>523</p>
-            <i class="bi bi-cart"></i>
-          </div>
+            <div class="card-header">Commandes</div>
+            <div class="card-body">
+                <p>523</p>
+                <i class="bi bi-cart"></i>
+            </div>
         </div>
         <div class="card text-bg-secondary mb-3" style="max-width: 18rem;">
             <div class="card-header">Vente</div>
-            <h5 class="card-title"></h5>
+            <div class="card-body">
+                <p>515</p>
+                <i class="bi bi-cart"></i>
+            </div>
         </div>
         <div class="card text-bg-success mb-3" style="max-width: 18rem;">
             <div class="card-header">Profit</div>
             <div class="card-body">
-                <h5 class="card-title"></h5>
-                <p class="card-text"></p>
+                <p>51</p>
+                <i class="bi bi-cart"></i> 
             </div>
         </div>
         <div class="card text-bg-danger mb-3" style="max-width: 18rem;">
             <div class="card-header">Revenu</div>
             <div class="card-body">
-                <h5 class="card-title"></h5>
-                <p class="card-text"></p>
+                <p>90</p>
+                <i class="bi bi-cart"></i> 
             </div>
         </div>
-      </div>
+    </div>
+
       <table id="myTable" class="table">
     <thead>
         <div class="mb-3">

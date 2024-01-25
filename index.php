@@ -20,12 +20,13 @@
 
 
       <div class="menu-item"><i class="bi bi-box-seam"></i><a href="ajoutproduit.php"><span>Produit</span></a></div>
+      <div class="menu-item"><i class="bi bi-files"><a href="categorie_list.php"></i><span>categorie</span></a></div>
       <div class="menu-item"><i class="bi bi-list-task"></i><span>Commandes</span></div>
       <div class="menu-item"><i class="bi bi-bar-chart"></i><span>Analyse</span></div>
       <div class="menu-item"><i class="bi bi-database"></i><span>Stock</span></div>
       <div class="menu-item"><i class="bi bi-files"></i><span>Toutes les commandes</span></div>
       <div class="menu-item"><i class="bi bi-people-fill"></i><span>Clients</span></div>
-      <div class="menu-item"><i class="bi bi-person"></i><span>Utilisateur</span></div>
+      <div class="menu-item"><i class="bi bi-person"><a href="utlisateur.php"></i><span>Utilisateur</span></a></div>
       <div class="menu-item"><i class="bi bi-gear"></i><span>Parametre</span></div>
       <div class="menu-item"><i class="bi bi-box-arrow-in-left"></i><span>Déconnexion</span></div>
     </div>
@@ -41,7 +42,7 @@
             Sana
           </button>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="profiladmin.php?id=2">Profil</a></li>
             <li><a class="dropdown-item" href="#">Another action</a></li>
           </ul>
         </div>

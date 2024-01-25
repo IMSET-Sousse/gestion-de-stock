@@ -1,22 +1,28 @@
 <?php
-
 include 'connexion_bdd.php';
 
-// Récupérer l'ID de l'administrateur à afficher
-$admin_id = 1;
+$erreur_profil = ''; // Initialisez la variable d'erreur
 
-// Récupérer les informations de l'administrateur depuis la base de données
-$requete_profil = "SELECT * FROM administrateurs WHERE id = $admin_id";
-$resultat_profil = $connexion->query($requete_profil);
+if (isset($_GET['id'])) {
+    $admin_id = intval($_GET['id']);
 
-// Vérifier s'il y a des résultats
-if ($resultat_profil->num_rows > 0) {
-    $admin = $resultat_profil->fetch_assoc();
+    $requete_profil = "SELECT * FROM administrateurs WHERE id = ?";
+    $stmt = $connexion->prepare($requete_profil);
+    $stmt->bind_param("i", $admin_id);
+    $stmt->execute();
+    $resultat_profil = $stmt->get_result();
+
+    if ($resultat_profil->num_rows > 0) {
+        $admin = $resultat_profil->fetch_assoc();
+    } else {
+        $erreur_profil = "Aucun administrateur trouvé.";
+    }
+
+    $stmt->close();
 } else {
-    $erreur_profil = "Aucun administrateur trouvé.";
+    $erreur_profil = "ID d'administrateur non spécifié.";
 }
 
-// Fermer la connexion à la base de données
 $connexion->close();
 ?>
 
@@ -28,19 +34,23 @@ $connexion->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil de l'Administrateur</title>
 </head>
-
 <body>
+     <h2>Profil de l'Administrateur</h2>
 
-    <h2>Profil de l'Administrateur</h2>
-
-    <?php if (isset($erreur_profil)) : ?>
+    <?php if (!empty($erreur_profil)) : ?>
         <p style="color: red;"><?php echo $erreur_profil; ?></p>
     <?php else : ?>
         <p>ID: <?php echo $admin["id"]; ?></p>
         <p>Nom: <?php echo $admin["nom"]; ?></p>
         <p>Prénom: <?php echo $admin["prenom"]; ?></p>
         <p>Email: <?php echo $admin["email"]; ?></p>
-        <!-- Ajoutez ici d'autres champs du profil en fonction de votre table -->
+        <p>Date de Naissance: <?php echo $admin["date_naissance"]; ?></p>
+        <p>Sexe: <?php echo $admin["sexe"]; ?></p>
+        <p>Adresse: <?php echo $admin["adresse"]; ?></p>
+        <p>Ville: <?php echo $admin["ville"]; ?></p>
+        <p>Code Postal: <?php echo $admin["code_postal"]; ?></p>
+        <p>Pays: <?php echo $admin["pays"]; ?></p>
+        <p>Numéro de Téléphone: <?php echo $admin["numero_telephone"]; ?></p>
     <?php endif; ?>
 
 </body>

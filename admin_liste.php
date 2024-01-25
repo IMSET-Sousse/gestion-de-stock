@@ -33,6 +33,7 @@ $resultat = $connexion->query($requete);
             <th>Code Postal</th>
             <th>Pays</th>
             <th>Numéro de Téléphone</th>
+            <th>Actions</th>
         </tr>
 
         <?php
@@ -50,10 +51,14 @@ $resultat = $connexion->query($requete);
                 echo "<td>" . $row["code_postal"] . "</td>";
                 echo "<td>" . $row["pays"] . "</td>";
                 echo "<td>" . $row["numero_telephone"] . "</td>";
+                
+                // Correction ici
+                echo "<td><a href='profiladmin.php?id=" . $row["id"] . "'>Voir le profil</a></td>";
+                
                 echo "</tr>";
             }
         } else {
-            echo "<tr><td colspan='11'>Aucun administrateur trouvé.</td></tr>";
+            echo "<tr><td colspan='12'>Aucun administrateur trouvé.</td></tr>";
         }
         ?>
     </table>
@@ -65,3 +70,4 @@ $resultat = $connexion->query($requete);
 <?php
 $connexion->close();
 ?>
+

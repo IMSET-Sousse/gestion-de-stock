@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($stmt->execute()) {
             echo "Inscription réussie ! Redirection vers la page de connexion...";
-            header('Refresh: 2; URL=index.php'); // Redirection après 2 secondes
+            header('Refresh: 2; URL=indexutilisateur.php'); // Redirection après 2 secondes
             exit();
         } else {
             echo "Erreur lors de l'inscription : " . $stmt->error;
@@ -47,7 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $conn->close();
 ?>
 
-<!-- Formulaire d'inscription -->
 <h2>Inscription Utilisateur</h2>
 <form method="post" action="inscriptionutilisateur.php">
     <label for="nom">Nom :</label>

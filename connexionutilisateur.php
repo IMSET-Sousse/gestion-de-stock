@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($mot_de_passe, $utilisateur['mot_de_passe'])) {
             // L'utilisateur est connecté avec succès
             echo "Connexion réussie!";
-            header("Location: accueil.php");
+            header("Location: indexutilisateur.php");
             exit();
         } else {
             // Mot de passe incorrect
@@ -67,6 +67,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="submit" value="Se connecter">
     </form>
 
+    <p>Vous n'avez pas de compte ? <a href="inscriptionutilisateur.php">Inscrivez-vous ici</a>.</p>
+
 </body>
 </html>
 
@@ -74,3 +76,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Fermer la connexion à la base de données
 $connexion->close();
 ?>
+

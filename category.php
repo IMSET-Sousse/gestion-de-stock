@@ -1,5 +1,3 @@
-
-
 <style>
     body {
         font-family: 'Arial', sans-serif;
@@ -9,9 +7,10 @@
 
     h2 {
         color: #28a745;
-    text-align: center;
-}
-  form {
+        text-align: center;
+    }
+
+    form {
         max-width: 500px;
         margin: 0 auto;
     }
@@ -42,7 +41,9 @@
         background-color: #218838;
     }
 </style>
+
 <a href="categorie_add.php">Ajouter catégorie</a>.</p>
+
 <?php
 $servername = "localhost";
 $username = "root";
@@ -63,27 +64,11 @@ $result = mysqli_query($conn, $sql);
 // Vérifier s'il y a des catégories
 if (mysqli_num_rows($result) > 0) {
     echo "<h2>Liste des Catégories</h2>";
-    echo "<table border='1'>";
-    echo "<tr><th>ID</th><th>Titre</th><th>Créé le</th><th>Modifié le</th><th>Actions</th></tr>";
+    echo "<ul>";
     while ($row = mysqli_fetch_assoc($result)) {
-        echo "<tr>";
-        echo "<td>" . $row["id"] . "</td>";
-        echo "<td>" . $row["titre"] . "</td>";
-        echo "<td>" . date("Y-m-d H:i:s", strtotime($row["created_at"])) . "</td>";
-    
-        // Vérifiez si la clé "updated_at" existe dans le tableau $row
-        if (isset($row["updated_at"])) {
-            echo "<td>" . date("Y-m-d H:i:s", strtotime($row["updated_at"])) . "</td>";
-        } else {
-            echo "<td>Non disponible</td>"; // Ou tout autre message que vous souhaitez afficher
-        }
-    
-        echo "<td><a href='categorie_edit.php?id=" . $row["id"] . "'>Modifier</a> | <a href='categorie_delete.php?id=" . $row["id"] . "' onclick='return confirm(\"Êtes-vous sûr de vouloir supprimer cette catégorie ?\");'>Supprimer</a></td>";
-        echo "</tr>";
+        echo "<li>" . $row["titre"] . "</li>";
     }
-    
-
-    echo "</table>";
+    echo "</ul>";
 } else {
     echo "Aucune catégorie trouvée.";
 }
